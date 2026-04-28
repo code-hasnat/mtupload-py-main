@@ -18,6 +18,7 @@ def md5_hash(data: bytes) -> str:
 
 def save_binary_file(path, data: bytes):
     """Save binary data to a file."""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "wb") as f:
         f.write(data)
 
