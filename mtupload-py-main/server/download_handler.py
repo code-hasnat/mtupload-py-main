@@ -19,11 +19,11 @@ def handle_download(handler):
         return
 
     path = f"uploads/{metadata['filename']}"
-    with open(path, "rb") as f:
-        file_data = f.read()
-
     handler.send_response(200)
     handler.send_header("Content-Type", metadata["content_type"])
     handler.send_header("Content-Length", str(metadata["size"]))
     handler.end_headers()
-    handler.wfile.write(file_data)
+    
+    import shutil
+    with open(path, "rb") as f:
+        shutil.copyfileobj(f, handler.wfile)

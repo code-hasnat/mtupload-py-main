@@ -3,6 +3,12 @@ from utils import md5_hash, save_binary_file
 from metadata_store import save_metadata
 
 def handle_upload(handler):
+    if 'Content-Length' not in handler.headers:
+        handler.send_response(411)
+        handler.end_headers()
+        handler.wfile.write(b"Length Required")
+        return
+        
     content_length = int(handler.headers['Content-Length'])
     content_type = handler.headers.get('Content-Type', 'application/octet-stream')
     raw_data = handler.rfile.read(content_length)

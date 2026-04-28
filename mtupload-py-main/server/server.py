@@ -18,4 +18,8 @@ if __name__ == '__main__':
     ensure_directory('uploads')
     server = ThreadedHTTPServer(('0.0.0.0', 8000), RequestHandler)
     print("[+] Server running on http://0.0.0.0:8000")
-    server.serve_forever()
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\n[-] Shutting down server gracefully...")
+        server.server_close()
