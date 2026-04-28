@@ -15,9 +15,10 @@ class RequestHandler(BaseHTTPRequestHandler):
         handle_download(self)
 
 if __name__ == '__main__':
+    PORT = 8000
     ensure_directory('uploads')
-    server = ThreadedHTTPServer(('0.0.0.0', 8000), RequestHandler)
-    print("[+] Server running on http://0.0.0.0:8000")
+    server = ThreadedHTTPServer(('0.0.0.0', PORT), RequestHandler)
+    print(f"[+] Server running on http://0.0.0.0:{PORT}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
