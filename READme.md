@@ -106,4 +106,4 @@ Example metadata entry:
 - This is a basic demo. In production, consider:
   - Adding **authentication (JWT, API keys, etc.)**
   - Using **HTTPS** for secure transmission
-  - Enforcing file **size/
+  - Enforcing file **size/type limits** to prevent abuse.
